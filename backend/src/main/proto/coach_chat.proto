@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gymtrack.grpc.chat";
+option java_outer_classname = "CoachChatProto";
+
+package gymtrack.chat;
+
+service CoachChatGrpcService {
+  rpc StreamMessages(stream ChatMessageRequest) returns (stream ChatMessageResponse);
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
+  rpc GetUnreadCount(GetUnreadCountRequest) returns (UnreadCountResponse);
+}
+
+message ChatMessageRequest {
+  string user_email = 1;
+  string message = 2;
+}
+
+message ChatMessageResponse {
+  string id = 1;
+  string user_id = 2;
+  string user_full_name = 3;
+  string user_email = 4;
+  string sender_role = 5;
+  string sender_name = 6;
+  string message = 7;
+  bool read_by_user = 8;
+  bool read_by_coach = 9;
+  int64 created_at_millis = 10;
+}
+
+message GetMessagesRequest {
+  string user_email = 1;
+}
+
+message GetMessagesResponse {
+  repeated ChatMessageResponse messages = 1;
+}
+
+message GetUnreadCountRequest {
+  string user_email = 1;
+}
+
+message UnreadCountResponse {
+  int64 unread_count = 1;
+}

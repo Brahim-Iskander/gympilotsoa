@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gymtrack.grpc.progress";
+option java_outer_classname = "ProgressProto";
+
+package gymtrack.progress;
+
+service ProgressGrpcService {
+  rpc CreateEntry(CreateProgressEntryRequest) returns (ProgressEntryResponse);
+  rpc GetEntries(GetEntriesRequest) returns (GetEntriesResponse);
+  rpc DeleteEntry(DeleteEntryRequest) returns (DeleteEntryResponse);
+}
+
+message StrengthLog {
+  string exercise = 1;
+  double weight = 2;
+  int32 reps = 3;
+  int32 sets = 4;
+}
+
+message CreateProgressEntryRequest {
+  string user_email = 1;
+  string date = 2;
+  double weight = 3;
+  string weight_unit = 4;
+  map<string, double> measurements = 5;
+  string measurement_unit = 6;
+  repeated StrengthLog strength_logs = 7;
+  string note = 8;
+}
+
+message ProgressEntryResponse {
+  string id = 1;
+  string user_id = 2;
+  string date = 3;
+  double weight = 4;
+  string weight_unit = 5;
+  map<string, double> measurements = 6;
+  string measurement_unit = 7;
+  repeated StrengthLog strength_logs = 8;
+  string note = 9;
+  int64 created_at_millis = 10;
+  int64 updated_at_millis = 11;
+}
+
+message GetEntriesRequest {
+  string user_email = 1;
+}
+
+message GetEntriesResponse {
+  repeated ProgressEntryResponse entries = 1;
+}
+
+message DeleteEntryRequest {
+  string user_email = 1;
+  string entry_id = 2;
+}
+
+message DeleteEntryResponse {
+  bool success = 1;
+}

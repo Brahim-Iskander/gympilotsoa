@@ -31,6 +31,7 @@ import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 import Logo from './Logo';
+import CardBrandLogos from './CardBrandLogos';
 import { useLanguage } from '../i18n';
 import { navigateThenScroll } from '../utils/navigation';
 
@@ -325,6 +326,7 @@ export default function Footer() {
             </Stack>
 
             <Stack direction="row" spacing={1.5} alignItems="center" flexWrap="wrap" justifyContent="center">
+              <CardBrandLogos size={26} />
               <Chip
                 label="Cards • PayPal • Apple Pay • iDEAL"
                 size="small"

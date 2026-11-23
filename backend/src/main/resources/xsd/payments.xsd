@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://gymtrack.com/soap/payments"
+           xmlns:tns="http://gymtrack.com/soap/payments"
+           elementFormDefault="qualified">
+
+    <!-- ══════ Validate Voucher ══════ -->
+    <xs:element name="ValidateVoucherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="voucherCode" type="xs:string"/>
+                <xs:element name="orderAmount" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ValidateVoucherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="valid" type="xs:boolean"/>
+                <xs:element name="message" type="xs:string"/>
+                <xs:element name="discountType" type="xs:string"/>
+                <xs:element name="discountValue" type="xs:double"/>
+                <xs:element name="discountAmount" type="xs:double"/>
+                <xs:element name="finalAmount" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ══════ Get D17 Config ══════ -->
+    <xs:element name="GetD17ConfigRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="GetD17ConfigResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="phoneNumber" type="xs:string"/>
+                <xs:element name="recipientName" type="xs:string"/>
+                <xs:element name="instructions" type="xs:string"/>
+                <xs:element name="slaHours" type="xs:int"/>
+                <xs:element name="currency" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ══════ Verify Membership ══════ -->
+    <xs:element name="VerifyMembershipRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="VerifyMembershipResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="active" type="xs:boolean"/>
+                <xs:element name="plan" type="xs:string"/>
+                <xs:element name="expiresAt" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

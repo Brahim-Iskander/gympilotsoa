@@ -57,6 +57,7 @@ import Footer from '../../components/Footer';
 import { useGeoCurrency } from '../../utils/geoCurrency';
 import D17PaymentModal from '../../components/D17PaymentModal';
 import { paymentService } from '../../services/paymentService';
+import CardBrandLogos from '../../components/CardBrandLogos';
 
 export default function MembershipPage() {
   const { t } = useLanguage();
@@ -750,8 +751,9 @@ export default function MembershipPage() {
                         </Button>
                         <Stack direction="row" spacing={0.75} alignItems="center" justifyContent="center" sx={{ mt: -0.5 }}>
                           <LockRounded sx={{ fontSize: 13, color: 'text.secondary', opacity: 0.8 }} />
+                          <CardBrandLogos size={22} />
                           <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.72rem', fontWeight: 600 }}>
-                            Secure checkout • Visa, Mastercard, Apple Pay, Google Pay
+                            Secure checkout • Apple Pay, Google Pay
                           </Typography>
                         </Stack>
                       </>
@@ -1024,8 +1026,9 @@ export default function MembershipPage() {
                         </Button>
                         <Stack direction="row" spacing={0.75} alignItems="center" justifyContent="center" sx={{ mt: -0.5 }}>
                           <LockRounded sx={{ fontSize: 13, color: 'text.secondary', opacity: 0.8 }} />
+                          <CardBrandLogos size={22} />
                           <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.72rem', fontWeight: 600 }}>
-                            Secure checkout • Visa, Mastercard, Apple Pay, Google Pay
+                            Secure checkout • Apple Pay, Google Pay
                           </Typography>
                         </Stack>
                       </>

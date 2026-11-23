@@ -1,17 +1,17 @@
-# ── Pre-built Frontend: just serve with Nginx ───────────────────
-# Build locally with: VITE_API_URL=/api npm run build
-# Then deploy the dist/ folder directly (saves RAM on low-memory VPS)
-FROM nginx:alpine
+FROM node:22-alpine
 
-# Remove default Nginx website
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-# Copy pre-built dist folder
-COPY dist/ /usr/share/nginx/html/
+# Copy package files
+COPY package*.json ./
+RUN npm install
 
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy source files
+COPY . .
 
-EXPOSE 80
+ENV VITE_API_URL=http://localhost:8081/api
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 5173
+
+# Run Vite dev server directly on localhost
+CMD ["npm", "run", "dev", "--", "--host"]

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gymtrack.grpc.ai";
+option java_outer_classname = "AiServiceProto";
+
+package gymtrack.ai;
+
+service AiGrpcService {
+  rpc ChatStream(AiChatRequest) returns (stream AiChatChunk);
+  rpc GetUsageStatus(UsageStatusRequest) returns (UsageStatusResponse);
+}
+
+message AiChatRequest {
+  string user_email = 1;
+  string message = 2;
+}
+
+message AiChatChunk {
+  string chunk = 1;
+  bool is_final = 2;
+}
+
+message UsageStatusRequest {
+  string user_email = 1;
+}
+
+message UsageStatusResponse {
+  string plan = 1;
+  int32 daily_used = 2;
+  int32 daily_limit = 3;
+  int32 monthly_used = 4;
+  int32 monthly_limit = 5;
+}

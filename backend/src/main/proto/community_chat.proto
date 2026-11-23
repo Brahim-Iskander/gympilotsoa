@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gymtrack.grpc.community";
+option java_outer_classname = "CommunityChatProto";
+
+package gymtrack.community;
+
+service CommunityChatGrpcService {
+  rpc SubscribeMessages(SubscribeRequest) returns (stream CommunityMessageResponse);
+  rpc SendMessage(SendCommunityMessageRequest) returns (CommunityMessageResponse);
+  rpc GetRecentMessages(GetRecentMessagesRequest) returns (GetRecentMessagesResponse);
+}
+
+message SubscribeRequest {
+  string user_email = 1;
+}
+
+message SendCommunityMessageRequest {
+  string user_email = 1;
+  string message = 2;
+}
+
+message CommunityMessageResponse {
+  string id = 1;
+  string user_id = 2;
+  string user_full_name = 3;
+  string user_email = 4;
+  string user_avatar = 5;
+  string user_role = 6;
+  string message = 7;
+  int64 created_at_millis = 8;
+}
+
+message GetRecentMessagesRequest {}
+
+message GetRecentMessagesResponse {
+  repeated CommunityMessageResponse messages = 1;
+}
